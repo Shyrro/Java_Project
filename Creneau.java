@@ -16,9 +16,7 @@ public class Creneau {
 	}
 	
 	public boolean isLibre(){
-		boolean libre = false;
-		
-		return libre;		
+		return (this.tache==null);	
 	}
 		
 	//Getters & Setters
@@ -56,4 +54,3 @@ public class Creneau {
 	}
 	
 }
-// test
