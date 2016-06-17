@@ -29,6 +29,14 @@ public class ServiceEntretien extends Service {
 		}
 
 		public void affecterTache(Tache t){
+			List<Employe> emps = new ArrayList<Employe>();
+			
+			emps = addAll(this.employes);
+			
+			while(i<emps.size() && emps[i].getCreneauxLibres(t.getNbCreneaux)){
+				
+			}
+			
 			
 		};		
 		
