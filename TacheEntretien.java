@@ -2,7 +2,7 @@ package entretien;
 import bibagenda.Tache;
 
 
-public class TacheEntretien extends Tache {
+public class TacheEntretien extends TacheInformatique {
 
 	//attributs 
 	private String numSalle;
