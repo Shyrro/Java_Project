@@ -1,4 +1,7 @@
 package bibagenda;
+import java.util.*;
+import java.security.SecureRandom;
+import java.math.BigInteger;
 
 public class Tache {
 
@@ -7,6 +10,17 @@ public class Tache {
 		protected int nbCreneaux;
 		protected String idTache;
 	
+
+		public Tache(String nature, int duree){
+			this.natureIntervention=nature;
+			this.nbCreneaux=duree;
+			SecureRandom random = new SecureRandom();
+			String idTemp = new BigInteger(45, random).toString(32);
+			
+			this.idTache= idTemp;
+			
+		}
+
 		// methodes
 		
 		public String getNatureIntervention() {
