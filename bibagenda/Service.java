@@ -19,6 +19,7 @@ public abstract class Service {
 	
 	public Service(String nom) {
 		this.nom=nom;
+		this.employes = new HashMap<String,Employe>();
 	}
 	
 	//methodes
@@ -45,7 +46,7 @@ public abstract class Service {
 	}
 	
 	//Returns all schedules 
-	private List<Creneau> getAllEdt(){
+	protected List<Creneau> getAllEdt(){
 		
 		List<Creneau> creneaux = new ArrayList<Creneau>();
 		
@@ -57,13 +58,23 @@ public abstract class Service {
 		return creneaux;
 		
 	}
+
+	protected Employe getEmployeDispo(Tache t){
+
+		//TODO : verifier dans la liste des employes le premier pour lequel 
+		//la fonction getCreneauxLibresEmploye est non nulle.
+
+
+		//on retourne cet employé
+		return new Employe("coucou");
+	}
 	
 	public void supprimerTache(Tache t){
 		
 		List<Creneau> creneaux = new ArrayList<Creneau>();
 		
 		//Recuperation de tous les creneaux
-		creneaux = this.getAllEdt(this.employes);
+		creneaux = this.getAllEdt();
 		
 		//On met a null tous les creneaux occupes par la tache t
 		for(Creneau c : creneaux){
