@@ -2,9 +2,7 @@ package si;
 import java.util.ArrayList;
 import java.util.Map;
 
-import bibagenda.Employe;
-import bibagenda.Service;
-import bibagenda.Tache;
+import bibagenda.*;
 
 
 public class ServiceInfo extends Service {
@@ -12,11 +10,15 @@ public class ServiceInfo extends Service {
 		//Attributs
 		ArrayList<Materiel> materiels;
 		ArrayList<Logiciel> logiciels;
-									
-		//attributs
 		private ArrayList<TacheMateriel> tachesEnAttente;
 
 		//Constructeur
+		public ServiceInfo(String nom){
+			super(nom);
+		}
+
+
+
 		public ServiceInfo(String nom, Map<String, Employe> employes) {
 			super(nom, employes);
 			tachesEnAttente = new ArrayList<TacheMateriel>();
@@ -26,7 +28,7 @@ public class ServiceInfo extends Service {
 		
 		
 		//methodes
-		public ArrayList<TacheEntretien> getTachesEnAttente() {
+		public ArrayList<TacheMateriel> getTachesEnAttente() {
 			return tachesEnAttente;
 		}
 
@@ -35,28 +37,27 @@ public class ServiceInfo extends Service {
 		}
 
 		//Methodes			
-		public void affecterTache(TacheInformatique t) throws ClassCastException, NullPointerException {
+		public void affecterTache(Tache t) {
 			try{
-				Employe e = this.getEmployeDispo();
+				Employe e = new Employe("toto");
+				e = this.getEmployeDispo(t);
 
 				if(e!=null){
 					if(t instanceof TacheLogiciel)
-						for(Creneau c : e.getCreneauxLibresEmp())
+						for(Creneau c : e.getCreneauxLibresEmploye(t.getNbCreneaux()))
 							c.setTache(t);
 					else if(t instanceof TacheMateriel){
-						for(Creneau c : e.getCreneauxLibresEmp())
+						for(Creneau c : e.getCreneauxLibresEmploye(t.getNbCreneaux()))
 							c.setTache(t);
 					}
 				}else{
 					if(t instanceof TacheMateriel)
-						this.tachesEnAttente.add(t);
+						this.tachesEnAttente.add((TacheMateriel)t);
 				}
 
 
 			}catch(ClassCastException e){
-				throw e;
 			}catch(NullPointerException e){
-				throw e;
 			}
 		}		
 }
