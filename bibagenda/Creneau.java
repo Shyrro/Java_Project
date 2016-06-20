@@ -7,11 +7,10 @@ public class Creneau {
 	private Jour jour;
 	private Tache tache;
 	
-	public Creneau(int heureDebut, int heureFin, Jour jour, int ordreCreneau){
-		this.heureDebut = heureDebut;
-		this.heureFin = heureFin;
+	public Creneau(Jour jour, int ordreCreneau){
 		this.jour = jour;
 		this.ordreCreneau = ordreCreneau;
+		this.tache = null;
 	}
 	
 	public boolean isLibre(){
