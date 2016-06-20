@@ -8,11 +8,9 @@ public class TacheEntretien extends Tache {
 	private String numSalle;
 	
 	//Constructor
-		public TacheEntretien(String nature, int duree, String numSalle, String idTache){
-			this.natureIntervention=nature;
-			this.nbCreneaux=duree;
+		public TacheEntretien(String nature, int duree, String numSalle){
+			super(nature,duree);
 			this.numSalle = numSalle;
-			this.idTache=idTache;
 		}
 	
 	//methodes
