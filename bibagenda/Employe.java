@@ -1,7 +1,6 @@
 package bibagenda;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.security.SecureRandom;
 import java.math.BigInteger;
 
@@ -21,11 +20,13 @@ public class Employe {
 		
 		//On boucle pour verifier si l'id qu'on genere aleatoirement 
 		//n est pas deja attribue a un employe du service
-		while(s.employeExistsInService(idTemp)){
-			idTemp = new BigInteger(45, random).toString(32);
-		}
+		idTemp = new BigInteger(45, random).toString(32);
+		
 		
 		this.idEmp = idTemp;
+		this.creneaux = new ArrayList<Creneau>();	
+		this.initEdt();
+
 	}
 	
 	public Employe(String nom,Service s){
@@ -43,36 +44,99 @@ public class Employe {
 		
 		this.idEmp = idTemp;
 		this.creneaux = new ArrayList<Creneau>();	
+		this.initEdt();
 	}
 	
 	//Methods
 	
-    public getCreneauxLibresEmploye(int nbCreneaux) {
+    public List<Creneau> getCreneauxLibresEmploye(int nbCreneaux) {
                 List<Creneau> liste = new ArrayList<Creneau> ();
-                Iterator<Creneau> iterCren = this.creneaux;
+                Iterator<Creneau> iterCren = this.creneaux.iterator();
                 
                 while (iterCren.hasNext() && liste.size() != nbCreneaux) {
-                        Jour day=iterCren.jour;
-                        if (day!=liste.getJour(liste.size()-1)); {
+                		Creneau c = iterCren.next();
+                        Jour day=c.getJour();
+                        if (day!=liste.get(liste.size()-1).getJour()){
                                 liste=new ArrayList<Creneau> ();
-                                
-                                else {
-                                        if (iterCren.tache==null)
-                                        liste=liste.add(iterCren);
-                                }
+                        } else {
+                            if (iterCren.next().getTache()==null)
+                            	liste.add(c);
                         }
-                }
-                
-                if (liste.length()!==nbCreneaux)
-                        liste=null;
-                
-                
-                return liste;
                         
                 }
+                
+                if (liste.size()!=nbCreneaux)
+                        liste=null;
+
+                return liste;
+                        
+     }
+
+     private void initEdt () {
+
+     	int compt = 0;
+     	Jour j = Jour.Lundi;
+
+     	//40 est le nombre de créneaux total par semaine
+     	//Chaque jour contient 8 créneaux, donc 8*5 = 40 ( je suis fort en maths !!!!)
+     	for(int i=0;i<40;i++){
+     		switch(j){
+     			case Lundi :
+     				if(compt<8){
+     					Creneau c = new Creneau(j,compt);
+     					this.creneaux.add(c);
+     					compt++;
+     				}else{
+     					compt=0;
+     					j = Jour.Mardi;
+     				}
+     			break;
+     			case Mardi :
+     				if(compt<8){
+     					Creneau c = new Creneau(j,compt);
+     					this.creneaux.add(c);
+     					compt++;
+     				}else{
+     					compt=0;
+     					j = Jour.Mercredi;
+     				}
+     			break;
+     			case Mercredi :
+     				if(compt<8){
+     					Creneau c = new Creneau(j,compt);
+     					this.creneaux.add(c);
+     					compt++;
+     				}else{
+     					compt=0;
+     					j = Jour.Jeudi;
+     				}
+     			break;
+     			case Jeudi :
+     				if(compt<8){
+     					Creneau c = new Creneau(j,compt);
+     					this.creneaux.add(c);
+     					compt++;
+     				}else{
+     					compt=0;
+     					j = Jour.Vendredi;
+     				}
+     			break;
+     			case Vendredi :
+     				if(compt<8){
+     					Creneau c = new Creneau(j,compt);
+     					this.creneaux.add(c);
+     					compt++;
+     				}
+     			break;
+     			default :
+     				//TODO : Create Exception for  this case
+     			break;
+     		}
+     		
+     	}
+     }
 		
 		
-	}
 	public List<Creneau> getCreneauEmp(){
 		//TODO
 		return new ArrayList<Creneau>();
