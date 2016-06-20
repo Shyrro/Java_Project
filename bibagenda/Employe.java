@@ -7,7 +7,7 @@ import java.math.BigInteger;
 
 public class Employe {
 
-	//Attributes hahahahah
+	//Attributes
 	private String idEmp;
 	private String nom;
 	private List<Creneau> creneaux;
