@@ -1,5 +1,5 @@
 package bibagenda;
-// TESTCYP
+
 import java.util.ArrayList;
 import java.util.List;
 import java.security.SecureRandom;
@@ -14,6 +14,10 @@ public class Employe {
 	private Service s;
 	
 	//Constructor
+	public Employe(String nom) {
+		this.nom=nom;
+	}
+	
 	public Employe(String nom,Service s){
 		
 		this.setS(s);
@@ -29,6 +33,8 @@ public class Employe {
 		
 		this.idEmp = idTemp;
 		this.creneaux = new ArrayList<Creneau>();
+		
+	
 		
 		
 	}
