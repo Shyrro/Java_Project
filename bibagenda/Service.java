@@ -17,6 +17,11 @@ public abstract class Service {
 		this.employes = employes;
 	}
 	
+	public Service(String nom) {
+		this.nom=nom;
+	}
+	
+	//methodes
 	public void ajoutEmploye(Employe emp){
 		
 		this.employes.put(emp.getIdEmp(),emp);
