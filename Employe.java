@@ -33,6 +33,33 @@ public class Employe {
 		
 	}
 	//Methods
+	
+    public getCreneauxLibresEmploye(int nbCreneaux) {
+                List<Creneau> liste = new ArrayList<Creneau> ();
+                Iterator<Creneau> iterCren = this.creneaux;
+                
+                while (iterCren.hasNext() && liste.size() != nbCreneaux) {
+                        Jour day=iterCren.jour;
+                        if (day!=liste.getJour(liste.size()-1)); {
+                                liste=new ArrayList<Creneau> ();
+                                
+                                else {
+                                        if (iterCren.tache==null)
+                                        liste=liste.add(iterCren);
+                                }
+                        }
+                }
+                
+                if (liste.length()!==nbCreneaux)
+                        liste=null;
+                
+                
+                return liste;
+                        
+                }
+		
+		
+	}
 	public List<Creneau> getCreneauEmp(){
 		//TODO
 		return new ArrayList<Creneau>();
