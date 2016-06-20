@@ -13,22 +13,18 @@ public class ServiceEntretien extends Service {
 		// TODO Auto-generated constructor stub
 		}
 
-		
-		
-		//attributs
-		private ArrayList<TacheEntretien> tachesEnAttente;
-		
-		
-		//methodes
-		public ArrayList<TacheEntretien> getTachesEnAttente() {
-			return tachesEnAttente;
-		}
 
-		public void setTachesEnAttente(ArrayList<TacheEntretien> tachesEnAttente) {
-			this.tachesEnAttente = tachesEnAttente;
-		}
+		public void affecterTache(TacheEntretien t) throws NullPointerException{
+			try{
+				
+				Employe e = this.getEmployeDispo();
 
-		public void affecterTache(Tache t){
+				for(Creneau c : e.getCreneauxLibresEmp())
+					c.setTache(t);
+
+			}catch(NullPointerException e){
+				throw e;
+			}
 			
 		};		
 		
