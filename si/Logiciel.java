@@ -6,9 +6,18 @@ public class Logiciel {
 	// attributs
 	private String nom;
 	private String numVersion;
-	private double tailleMemoire;
-	private Date dateObtention;
+	private String tailleMemoire;
+	private String dateObtention;
 	private String nomEditeur;
+	
+	//constructeur
+	public Logiciel(String nom, String numVersion, String tailleMemoire, String dateObtention, String nomEditeur) {
+		this.nom=nom;
+		this.numVersion=numVersion;
+		this.tailleMemoire=tailleMemoire;
+		this.dateObtention=dateObtention;
+		this.nomEditeur=nomEditeur;
+	}
 	
 	
 	// methodes

@@ -6,8 +6,17 @@ public class Materiel {
 		private String nom;
 		private String numVersion;
 		private String typeProcesseur;
-		private double tailleMemoireHd;
-		private double tailleMemoireRam;
+		private String tailleMemoireHd;
+		private String tailleMemoireRam;
+		
+		// constructeur
+		public Materiel(String nom, String numVersion, String typeProcesseur, String hd, String ram) {
+			this.nom=nom;
+			this.numVersion=numVersion;
+			this.typeProcesseur=typeProcesseur;
+			this.tailleMemoireHd=hd;
+			this.tailleMemoireRam=ram;
+		}
 		
 		
 		//methodes
