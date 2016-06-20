@@ -38,16 +38,16 @@ public class Materiel {
 		public void setTypeProcesseur(String typeProcesseur) {
 			this.typeProcesseur = typeProcesseur;
 		}
-		public double getTailleMemoireHd() {
+		public String getTailleMemoireHd() {
 			return tailleMemoireHd;
 		}
-		public void setTailleMemoireHd(double tailleMemoireHd) {
+		public void setTailleMemoireHd(String tailleMemoireHd) {
 			this.tailleMemoireHd = tailleMemoireHd;
 		}
-		public double getTailleMemoireRam() {
+		public String getTailleMemoireRam() {
 			return tailleMemoireRam;
 		}
-		public void setTailleMemoireRam(double tailleMemoireRam) {
+		public void setTailleMemoireRam(String tailleMemoireRam) {
 			this.tailleMemoireRam = tailleMemoireRam;
 		}
 		
