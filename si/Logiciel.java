@@ -34,16 +34,16 @@ public class Logiciel {
 	public void setNumVersion(String numVersion) {
 		this.numVersion = numVersion;
 	}
-	public double getTailleMemoire() {
+	public String getTailleMemoire() {
 		return tailleMemoire;
 	}
-	public void setTailleMemoire(double tailleMemoire) {
+	public void setTailleMemoire(String tailleMemoire) {
 		this.tailleMemoire = tailleMemoire;
 	}
-	public Date getDateObtention() {
+	public String getDateObtention() {
 		return dateObtention;
 	}
-	public void setDateObtention(Date dateObtention) {
+	public void setDateObtention(String dateObtention) {
 		this.dateObtention = dateObtention;
 	}
 	public String getNomEditeur() {
