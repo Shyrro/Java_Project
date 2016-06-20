@@ -16,6 +16,16 @@ public class Employe {
 	//Constructor
 	public Employe(String nom) {
 		this.nom=nom;
+		SecureRandom random = new SecureRandom();
+		String idTemp = new BigInteger(45, random).toString(32);
+		
+		//On boucle pour verifier si l'id qu'on genere aleatoirement 
+		//n est pas deja attribue a un employe du service
+		while(s.employeExistsInService(idTemp)){
+			idTemp = new BigInteger(45, random).toString(32);
+		}
+		
+		this.idEmp = idTemp;
 	}
 	
 	public Employe(String nom,Service s){
@@ -32,12 +42,9 @@ public class Employe {
 		}
 		
 		this.idEmp = idTemp;
-		this.creneaux = new ArrayList<Creneau>();
-		
-	
-		
-		
+		this.creneaux = new ArrayList<Creneau>();	
 	}
+	
 	//Methods
 	
     public getCreneauxLibresEmploye(int nbCreneaux) {
