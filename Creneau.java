@@ -1,6 +1,4 @@
 package bibagenda;
-//test
-//test2
 public class Creneau {
 
 	private int ordreCreneau;
