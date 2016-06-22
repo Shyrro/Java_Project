@@ -5,10 +5,9 @@ import java.util.*;
 public abstract class Service {
 
 	//Attributes
-	private String nom;
-	
-	private Map<String,Employe> employes;
-	private List<Tache> taches;
+	protected String nom;
+	protected Map<String,Employe> employes;
+	protected List<Tache> taches;
 	
 	
 	//Constructor
@@ -46,7 +45,7 @@ public abstract class Service {
 	}
 	
 	//Returns all schedules 
-	protected List<Creneau> getAllEdt(){
+	public List<Creneau> getAllEdt(){
 		
 		List<Creneau> creneaux = new ArrayList<Creneau>();
 		
@@ -59,27 +58,37 @@ public abstract class Service {
 		
 	}
 
-	protected Employe getEmployeDispo(Tache t){
+	public Employe getEmployeDispo(Tache t){
+		Iterator<Employe> iterator = this.employes.values().iterator();
+		Employe e=null;
 
-		//TODO : verifier dans la liste des employes le premier pour lequel 
+		while(iterator.hasNext() && e==null) {
+			Employe e1=iterator.next();
+			if(e1.getCreneauxLibresEmploye(t.getNbCreneaux())!=null)
+				e=e1;
+		}
+		//verifier dans la liste des employes le premier pour lequel 
 		//la fonction getCreneauxLibresEmploye est non nulle.
 
-
-		//on retourne cet employé
-		return new Employe("coucou");
+		//on retourne cet employe
+		return e;
 	}
 	
 	public void supprimerTache(Tache t){
 		
 		List<Creneau> creneaux = new ArrayList<Creneau>();
+		Tache tacheNull=null;
 		
 		//Recuperation de tous les creneaux
 		creneaux = this.getAllEdt();
 		
 		//On met a null tous les creneaux occupes par la tache t
 		for(Creneau c : creneaux){
-			if(c.getTache().equals(t))
-				c.setTache(null);
+			if(c.getTache()!=null){
+				if(c.getTache().equals(t))
+					c.setTache(tacheNull);
+			}
+			
 		}
 		
 	}
@@ -96,9 +105,5 @@ public abstract class Service {
 	public Map<String, Employe> getEmployes() {
 		return employes;
 	}	
-
-	public void setEmployes(Map<String, Employe> employes) {
-		this.employes = employes;
-	}
 	
 }
