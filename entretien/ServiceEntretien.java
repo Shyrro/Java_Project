@@ -1,6 +1,5 @@
 package entretien; 
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 import bibagenda.*;
 
@@ -19,16 +18,14 @@ public class ServiceEntretien extends Service {
 
 		public void affecterTache(Tache t){
 			try{
-				
 				Employe e = this.getEmployeDispo(t);
-
 				for(Creneau c : e.getCreneauxLibresEmploye(t.getNbCreneaux()))
 					c.setTache(t);
 
 			}catch(NullPointerException e){
 			}
 			
-		};		
+		}		
 		
 		
 }
