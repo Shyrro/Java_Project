@@ -4,18 +4,18 @@ public class Materiel {
 	
 		//attributs 
 		private String nom;
-		private String numVersion;
+		private String marque;
 		private String typeProcesseur;
 		private String tailleMemoireHd;
 		private String tailleMemoireRam;
 		
 		// constructeur
-		public Materiel(String nom, String numVersion, String typeProcesseur, String hd, String ram) {
+		public Materiel(String nom, String marque, String typeProcesseur, String tailleMemoireHd, String tailleMemoireRam) {
 			this.nom=nom;
-			this.numVersion=numVersion;
+			this.marque=marque;
 			this.typeProcesseur=typeProcesseur;
-			this.tailleMemoireHd=hd;
-			this.tailleMemoireRam=ram;
+			this.tailleMemoireHd=tailleMemoireHd;
+			this.tailleMemoireRam=tailleMemoireRam;
 		}
 		
 		
@@ -26,11 +26,11 @@ public class Materiel {
 		public void setNom(String nom) {
 			this.nom = nom;
 		}
-		public String getNumVersion() {
-			return numVersion;
+		public String getMarque() {
+			return marque;
 		}
-		public void setNumVersion(String numVersion) {
-			this.numVersion = numVersion;
+		public void setMarque(String marque) {
+			this.marque = marque;
 		}
 		public String getTypeProcesseur() {
 			return typeProcesseur;
@@ -50,6 +50,8 @@ public class Materiel {
 		public void setTailleMemoireRam(String tailleMemoireRam) {
 			this.tailleMemoireRam = tailleMemoireRam;
 		}
-		
+		public String toString(){
+			return "Nom: "+nom +" marque : "+marque;
+		}
 		
 }
