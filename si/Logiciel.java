@@ -21,7 +21,6 @@ public class Logiciel {
 	
 	
 	// methodes
-	
 	public String getNom() {
 		return nom;
 	}
@@ -51,5 +50,8 @@ public class Logiciel {
 	}
 	public void setNomEditeur(String nomEditeur) {
 		this.nomEditeur = nomEditeur;
+	}
+	public String toString(){
+		return "Nom: "+nom +" NumV : "+numVersion;
 	}
 }
