@@ -17,8 +17,7 @@ public class Tache {
 			SecureRandom random = new SecureRandom();
 			String idTemp = new BigInteger(45, random).toString(32);
 			
-			this.idTache= idTemp;
-			
+			this.idTache= idTemp;	
 		}
 
 		// methodes
@@ -38,13 +37,12 @@ public class Tache {
 		public String getIdTache() {
 			return idTache;
 		}
-		public void setIdTache(String idTache) {
-			this.idTache = idTache;
+		public String toString() {
+			return (idTache + " " +natureIntervention + " duree =" + nbCreneaux);
 		}
-		
 		public boolean equals(Tache t){
 			
-			if(this.natureIntervention.equals(t.natureIntervention) && this.nbCreneaux == t.nbCreneaux && this.idTache.equals(t.idTache))
+			if(((this!=null)||(t!=null)) && this.natureIntervention.equals(t.natureIntervention) && this.nbCreneaux == t.nbCreneaux && this.idTache.equals(t.idTache))
 				return true;
 			
 			return false;
