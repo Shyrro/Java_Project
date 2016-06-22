@@ -18,11 +18,6 @@ public class Employe {
 		SecureRandom random = new SecureRandom();
 		String idTemp = new BigInteger(45, random).toString(32);
 		
-		//On boucle pour verifier si l'id qu'on genere aleatoirement 
-		//n est pas deja attribue a un employe du service
-		idTemp = new BigInteger(45, random).toString(32);
-		
-		
 		this.idEmp = idTemp;
 		this.creneaux = new ArrayList<Creneau>();	
 		this.initEdt();
@@ -31,16 +26,10 @@ public class Employe {
 	
 	public Employe(String nom,Service s){
 		
-		this.setS(s);
+		this.s=s;
 		this.nom = nom;
 		SecureRandom random = new SecureRandom();
 		String idTemp = new BigInteger(45, random).toString(32);
-		
-		//On boucle pour verifier si l'id qu'on genere aleatoirement 
-		//n est pas deja attribue a un employe du service
-		while(s.employeExistsInService(idTemp)){
-			idTemp = new BigInteger(45, random).toString(32);
-		}
 		
 		this.idEmp = idTemp;
 		this.creneaux = new ArrayList<Creneau>();	
@@ -50,42 +39,61 @@ public class Employe {
 	//Methods
 	
     public List<Creneau> getCreneauxLibresEmploye(int nbCreneaux) {
-                List<Creneau> liste = new ArrayList<Creneau> ();
-                Iterator<Creneau> iterCren = this.creneaux.iterator();
-                
-                while (iterCren.hasNext() && liste.size() != nbCreneaux) {
-                		Creneau c = iterCren.next();
-                        Jour day=c.getJour();
-                        if (day!=liste.get(liste.size()-1).getJour()){
-                                liste=new ArrayList<Creneau> ();
-                        } else {
-                            if (iterCren.next().getTache()==null)
-                            	liste.add(c);
-                        }
-                        
-                }
-                
-                if (liste.size()!=nbCreneaux)
-                        liste=null;
+        
+        List<Creneau> edt = this.creneaux;
+        List<Creneau> res = new ArrayList<Creneau>();
 
-                return liste;
-                        
-     }
+        boolean creneauxFound = false;
+        int countCreneauxCons = 1;
+        Iterator<Creneau> iter = edt.iterator();
+        Creneau c = iter.next();
 
+        while(!c.isLibre())
+		    c=iter.next();
+
+		    res.add(c);
+
+		    while(iter.hasNext() && !creneauxFound){
+		        c=iter.next();
+		        if(c.getTache()==null) {
+		            
+		            if(c.getJour().equals(res.get(res.size()-1).getJour())) {
+				        res.add(c);
+				        countCreneauxCons++;
+		                if(countCreneauxCons==nbCreneaux)
+		                    creneauxFound=true;
+		            }
+		            else {
+		                res=new ArrayList<Creneau> ();
+		                res.add(c);
+		                countCreneauxCons=1;
+		            }
+		        }
+        }
+        System.out.println("\n\n\n ");
+
+
+        if(!creneauxFound)
+            res=null;
+
+        return res;
+
+    }
+
+   
      private void initEdt () {
 
      	int compt = 0;
      	Jour j = Jour.Lundi;
-
-     	//40 est le nombre de créneaux total par semaine
-     	//Chaque jour contient 8 créneaux, donc 8*5 = 40 ( je suis fort en maths !!!!)
-     	for(int i=0;i<40;i++){
+        int i=0;
+     	while(i<40){
      		switch(j){
      			case Lundi :
      				if(compt<8){
      					Creneau c = new Creneau(j,compt);
      					this.creneaux.add(c);
      					compt++;
+                        i++;
      				}else{
      					compt=0;
      					j = Jour.Mardi;
@@ -96,6 +104,7 @@ public class Employe {
      					Creneau c = new Creneau(j,compt);
      					this.creneaux.add(c);
      					compt++;
+                        i++;
      				}else{
      					compt=0;
      					j = Jour.Mercredi;
@@ -106,6 +115,7 @@ public class Employe {
      					Creneau c = new Creneau(j,compt);
      					this.creneaux.add(c);
      					compt++;
+                        i++;
      				}else{
      					compt=0;
      					j = Jour.Jeudi;
@@ -116,6 +126,7 @@ public class Employe {
      					Creneau c = new Creneau(j,compt);
      					this.creneaux.add(c);
      					compt++;
+                        i++;
      				}else{
      					compt=0;
      					j = Jour.Vendredi;
@@ -126,6 +137,7 @@ public class Employe {
      					Creneau c = new Creneau(j,compt);
      					this.creneaux.add(c);
      					compt++;
+                        i++;
      				}
      			break;
      			default :
@@ -137,10 +149,7 @@ public class Employe {
      }
 		
 		
-	public List<Creneau> getCreneauEmp(){
-		//TODO
-		return new ArrayList<Creneau>();
-	}
+
 	public List<Creneau> getEdt(){		
 		return this.creneaux;		
 	}
@@ -160,18 +169,8 @@ public class Employe {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public List<Creneau> getCreneaux() {
-		return creneaux;
-	}
-	public void setCreneaux(List<Creneau> creneaux) {
-		this.creneaux = creneaux;
-	}
 	public Service getS() {
 		return s;
 	}
-	public void setS(Service s) {
-		this.s = s;
-	}
-	
 	
 }
